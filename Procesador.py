@@ -2,8 +2,8 @@ class Procesador:
 
     def Operador(self,operacion):
         simbolos = ['+','-','/','*']
-        nums=[0,0]
-        op=''
+        nums=[0]
+        ops=['']
         x=0
 
         for i in range(len(operacion)):
@@ -13,29 +13,36 @@ class Procesador:
             for j in simbolos:
 
                 if y == j:
-                    op=j
+                    ops[x]=j
+                    ops.append('')
                     x=x+1
                     fin=1
+                    nums.append(0)
             if fin==0:        
         
                 if y==0:
-                    nums[x]==int(y)
+                    nums[x]==float(y)
 
                 else:
-                    nums[x]=(nums[x]*10)+int(y)
+                    nums[x]=(nums[x]*10)+float(y)
+        i = 0
+        for op in ops: 
+                       
+            if op=='+':
+                x=nums[i]+nums[i+1]
+                
+            elif op=='-':
+                x=nums[i]-nums[i+1]
 
+            elif op=='/':
+                x=float(nums[i]/nums[i+1])
+                
+            elif op=='*':
+                x=nums[i]*nums[i+1]
             
-        if op=='+':
-            x=nums[0]+nums[1]
-            
-        elif op=='-':
-            x=nums[0]-nums[1]
-
-        elif op=='/':
-            x=float(nums[0]/nums[1])
-            
-        elif op=='*':
-            x=nums[0]*nums[1]
+            i+=1
+            if len(nums)-1>=i:
+                nums[i]=x
 
         return x
 
